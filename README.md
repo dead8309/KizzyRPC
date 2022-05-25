@@ -23,4 +23,14 @@ dependencies {
 	}
 ```
 
+
+>Demo
+
+```java
+KizzyRPCservice rpc = new KizKizzyRPCservice("DISCORD ACCOUNT TOKEN");//Paste Discord Account token here
+             rpc.setName("test")
+                .setType(0)
+                .build();
+```
+
 ![image](https://user-images.githubusercontent.com/68665948/170219312-d512fc13-525b-4a0c-95d5-3fe7b867af97.png)
