@@ -22,3 +22,5 @@ dependencies {
 	        implementation 'com.github.dead8309:KizzyRPC:1.0.1'
 	}
 ```
+
+![image](https://user-images.githubusercontent.com/68665948/170218748-ca4097dd-6700-4ddb-8313-51994febb0af.png)
