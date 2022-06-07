@@ -1,5 +1,5 @@
 # KizzyRPC
-an android library for customising discord rpc written in Java.
+an android library for customising discord rpc written in Java. Now with Buttons support (no support for links ,only button texts will work)
 
 Available at jitpack.io
 [![](https://jitpack.io/v/dead8309/KizzyRPC.svg)](https://jitpack.io/#dead8309/KizzyRPC)
