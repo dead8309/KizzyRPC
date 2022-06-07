@@ -12,6 +12,7 @@ import org.java_websocket.handshake.ServerHandshake;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.Map;
 
 import javax.net.ssl.SSLParameters;
@@ -32,6 +33,7 @@ public class KizzyRPCservice {
 
     private String session_id;
     private Boolean reconnect_session=false;
+    ArrayList<String> buttons = new ArrayList<>();
 
 
 
@@ -155,8 +157,28 @@ public class KizzyRPCservice {
      * @param status
      * @return
      */
+
+    /**
+     * Button1 text
+     * @param status
+     * @return
+     */
     public KizzyRPCservice setStatus(String status) {
         this.status = status;
+        return this;
+    }
+
+    /**
+     * Button2 text
+     * @param button1_Text
+     * @return
+     */
+    public KizzyRPCservice setButton1(String button1_Text){
+        buttons.add(button1_Text);
+        return this;
+    }
+    public KizzyRPCservice setButton2(String button2_text){
+        buttons.add(button2_text);
         return this;
     }
 
@@ -178,11 +200,16 @@ public class KizzyRPCservice {
         assets.put("small_image", small_image);
         activity.put("assets", assets);
 
+        if(buttons.size()>0){
+            activity.put("buttons",buttons);
+        }
 
         presence.put("activities", new Object[]{activity});
         presence.put("afk", true);
         presence.put("since", start_timestamps);
         presence.put("status", status);
+
+
 
         rpc.put("op", 3);
         rpc.put("d", presence);

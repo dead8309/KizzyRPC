@@ -26,13 +26,14 @@ public class MyService extends Service {
         kizzyRPCservice = new KizzyRPCservice(token);
         kizzyRPCservice.setName("hi")
                 .setDetails("details")
-                .setLargeImage("attachments/948828217312178227/948840504542498826/Kizzy.png")
-                .setSmallImage("attachments/948828217312178227/948840504542498826/Kizzy.png")
+                .setLargeImage("attachments/973256105515974676/983674644823412798/unknown.png")
+                .setSmallImage("attachments/973256105515974676/983674644823412798/unknown.png")
                 .setState("state")
                 .setType(0)
                 .setStartTimestamps(System.currentTimeMillis())
-                /*.setStopTimestamps(System.currentTimeMillis()+15000)*/
-                .setStatus("dnd")
+                .setButton1("Button1")
+                .setButton2("Button2")
+                .setStatus("online")
                 .build();
         notification();
     }
