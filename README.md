@@ -19,7 +19,7 @@ repositories:
 
 ```gradle
 dependencies {
-	        implementation 'com.github.dead8309:KizzyRPC:1.0.1'
+	       implementation 'com.github.dead8309:KizzyRPC:1.0.2'
 	}
 ```
 
