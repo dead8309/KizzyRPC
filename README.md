@@ -26,7 +26,7 @@ dependencies {
 
 # Demo
 ```java
-KizzyRPCservice rpc = new KizzyRPCservice(token);
+KizzyRPCservice rpc = new KizzyRPCservice(token);//Discord account token
         rpc.setName("hi")
         .setDetails("details")
         .setLargeImage("attachments/973256105515974676/983674644823412798/unknown.png")
