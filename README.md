@@ -26,10 +26,18 @@ dependencies {
 
 # Demo
 ```java
-KizzyRPCservice rpc = new KizzyRPCservice("DISCORD ACCOUNT TOKEN");//Paste Discord Account token here
-             rpc.setName("test")
-                .setType(0)
-                .build();
+KizzyRPCservice rpc = new KizzyRPCservice(token);
+        rpc.setName("hi")
+        .setDetails("details")
+        .setLargeImage("attachments/973256105515974676/983674644823412798/unknown.png")
+        .setSmallImage("attachments/973256105515974676/983674644823412798/unknown.png")
+        .setState("state")
+        .setType(0)
+        .setStartTimestamps(System.currentTimeMillis())
+        .setButton1("Button1")
+        .setButton2("Button2")
+        .setStatus("online")
+        .build();
 ```
 
 ![image](https://user-images.githubusercontent.com/68665948/170219312-d512fc13-525b-4a0c-95d5-3fe7b867af97.png)
