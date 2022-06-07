@@ -40,4 +40,5 @@ KizzyRPCservice rpc = new KizzyRPCservice(token);
         .build();
 ```
 
-![image](https://user-images.githubusercontent.com/68665948/170219312-d512fc13-525b-4a0c-95d5-3fe7b867af97.png)
+![RPC _Demo](https://user-images.githubusercontent.com/68665948/172368963-90697dc2-3d7a-42e6-9511-d1497eadb637.png)
+
