@@ -47,7 +47,9 @@ public class KizzyRPCservice {
                 Thread.sleep(heartbeat_interval);
                 webSocketClient.send("{\"op\":1, \"d\":" + (seq==0?"null":Integer.toString(seq)) + "}");
 
-            } catch (InterruptedException e) {}
+            } catch (InterruptedException e) {
+               e.printStackTrace();
+            }
         };
     }
     public void closeRPC(){
@@ -343,6 +345,7 @@ public class KizzyRPCservice {
                             Thread.sleep(200);
                             reconnect();
                         } catch (InterruptedException e) {
+                               e.printStackTrace();
                         }
                     });
                     newTh.start();
