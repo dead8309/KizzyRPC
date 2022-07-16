@@ -1,5 +1,7 @@
-[![CodeFactor](https://www.codefactor.io/repository/github/dead8309/kizzyrpc/badge)](https://www.codefactor.io/repository/github/dead8309/kizzyrpc)
-[![](https://jitpack.io/v/dead8309/KizzyRPC.svg)](https://jitpack.io/#dead8309/KizzyRPC)
+[![CodeFactor](https://www.codefactor.io/repository/github/dead8309/kizzyrpc/badge)](https://www.codefactor.io/repository/github/dead8309/kizzyrpc) [![](https://jitpack.io/v/dead8309/KizzyRPC.svg)](https://jitpack.io/#dead8309/KizzyRPC)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity) [![Open Source? Yes!](https://badgen.net/badge/Open%20Source%20%3F/Yes%21/blue?icon=github)](https://github.com/Naereen/badges/)
+![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white)![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
+
 # KizzyRPC
 an android library for customising discord rpc written in Java. Now with Buttons support (no support for links ,only button texts will work)
 
