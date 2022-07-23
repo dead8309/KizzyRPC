@@ -28,16 +28,15 @@ dependencies {
 
 KizzyRPCservice rpc = new KizzyRPCservice(token);//Discord account token
         rpc.setName("hi")
-	
-	setApplicationId("962990036020756480")
+	.setApplicationId("962990036020756480")
         .setDetails("details")
         .setLargeImage("attachments/973256105515974676/983674644823412798/unknown.png")
         .setSmallImage("attachments/973256105515974676/983674644823412798/unknown.png")
         .setState("state")
         .setType(0)
         .setStartTimestamps(System.currentTimeMillis())
-        .setButton1("Button1")
-        .setButton2("Button2")
+        .setButton1("Button1","https://youtu.be/1yVm_M1sKBE")
+        .setButton2("Button2","https://youtu.be/1yVm_M1sKBE")
         .setStatus("online")
         .build();
 ```
