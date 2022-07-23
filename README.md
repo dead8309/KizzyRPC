@@ -18,7 +18,7 @@ allprojects {
 
 ```gradle
 dependencies {
-	       implementation 'com.github.dead8309:KizzyRPC:1.0.2'
+	       implementation 'com.github.dead8309:KizzyRPC:1.0.3'
 	}
 ```
 
