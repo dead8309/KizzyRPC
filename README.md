@@ -3,12 +3,12 @@
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white)![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
 
 # KizzyRPC
-an android library for customising discord rpc written in Java. Now with Buttons support (no support for links ,only button texts will work)
+an android library for customising discord rpc written in Java. Now with Buttons.
 
 >Step 1. Add it in your root build.gradle at the end of repositories:
 ```gradle
 allprojects {
-    repositories {
+	repositories {
 	...
 	maven { url 'https://jitpack.io' }
 	}
