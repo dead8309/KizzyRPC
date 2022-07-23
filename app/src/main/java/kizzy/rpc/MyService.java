@@ -24,18 +24,20 @@ public class MyService extends Service {
         token = MainActivity.token;
 
         kizzyRPCservice = new KizzyRPCservice(token);
-        kizzyRPCservice.setName("hi")
+        kizzyRPCservice.setApplicationId("962990036020756480")
+                .setName("hi")
                 .setDetails("details")
                 .setLargeImage("attachments/973256105515974676/983674644823412798/unknown.png")
                 .setSmallImage("attachments/973256105515974676/983674644823412798/unknown.png")
                 .setState("state")
                 .setType(0)
                 .setStartTimestamps(System.currentTimeMillis())
-                .setButton1("Button1")
-                .setButton2("Button2")
+                .setButton1("button1","https://youtu.be/1yVm_M1sKBE")
+                .setButton2("button2","https://youtu.be/1yVm_M1sKBE")
                 .setStatus("online")
                 .build();
         notification();
+        
     }
 
     @Override

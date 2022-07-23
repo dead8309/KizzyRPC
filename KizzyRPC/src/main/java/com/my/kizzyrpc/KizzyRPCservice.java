@@ -21,7 +21,7 @@ import javax.net.ssl.SSLParameters;
 public class KizzyRPCservice {
 
     String token;
-    String activity_name, details, state, large_image, small_image, status;
+    String applicationId,activity_name, details, state, large_image, small_image, status;
     Long start_timestamps, stop_timestamps;
     int type;
     ArrayMap<String, Object> rpc = new ArrayMap<>();
@@ -34,7 +34,7 @@ public class KizzyRPCservice {
     private String session_id;
     private Boolean reconnect_session=false;
     ArrayList<String> buttons = new ArrayList<>();
-
+    ArrayList<String> button_url = new ArrayList<>();
 
 
     public KizzyRPCservice(String token) {
@@ -56,6 +56,17 @@ public class KizzyRPCservice {
         if(!heartbeatThr.isInterrupted())
             heartbeatThr.interrupt();
         webSocketClient.close(1000);
+    }
+    
+    /**
+     * Application Id for Rpc
+     * An application id is required for functioning of urls in buttons
+     * @param activity_name
+     * @return
+     */
+    public KizzyRPCservice setApplicationId(String applicationId) {
+        this.applicationId = applicationId;
+        return this;
     }
 
     /**
@@ -159,14 +170,18 @@ public class KizzyRPCservice {
      * @param status
      * @return
      */
-
+     public KizzyRPCservice setStatus(String status) {
+        this.status = status;
+        return this;
+    }
     /**
      * Button1 text
      * @param status
      * @return
      */
-    public KizzyRPCservice setStatus(String status) {
-        this.status = status;
+    public KizzyRPCservice setButton1(String button_label,String link){
+        buttons.add(button_label);
+        button_url.add(link);
         return this;
     }
 
@@ -175,18 +190,17 @@ public class KizzyRPCservice {
      * @param button1_Text
      * @return
      */
-    public KizzyRPCservice setButton1(String button1_Text){
-        buttons.add(button1_Text);
-        return this;
-    }
-    public KizzyRPCservice setButton2(String button2_text){
-        buttons.add(button2_text);
+    
+    public KizzyRPCservice setButton2(String button_label,String link){
+        buttons.add(button_label);
+        button_url.add(link);
         return this;
     }
 
     public void build() {
         ArrayMap<String, Object> presence = new ArrayMap<>();
         ArrayMap<String, Object> activity = new ArrayMap<>();
+        activity.put("application_id",applicationId);
         activity.put("name", activity_name);
         activity.put("details", details);
         activity.put("state", state);
@@ -203,7 +217,10 @@ public class KizzyRPCservice {
         activity.put("assets", assets);
 
         if(buttons.size()>0){
+            ArrayMap<String, Object> metadata = new ArrayMap<>();
             activity.put("buttons",buttons);
+            metadata.put("button_urls",button_url);
+            activity.put("metadata",metadata);
         }
 
         presence.put("activities", new Object[]{activity});
