@@ -5,8 +5,12 @@
 [![](https://dcbadge.vercel.app/api/server/vUPc7zzpV5)](https://discord.gg/vUPc7zzpV5)
 
 # KizzyRPC
-an android library for customising discord rpc written in Java. Now with Buttons.
+An android library for customising discord rpc used by my [Apps](https://kizxy.herokuapp.com)
 
+![rpc](https://user-images.githubusercontent.com/68665948/183117335-df349a99-e8ae-4329-8234-698c77550e53.png)
+
+
+# Usage
 >Step 1. Add it in your root build.gradle at the end of repositories:
 ```gradle
 allprojects {
