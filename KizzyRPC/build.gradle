@@ -4,6 +4,7 @@ plugins {
 }
 
 android {
+    namespace 'com.my.kizzyrpc'
     compileSdk 33
 
     defaultConfig {
