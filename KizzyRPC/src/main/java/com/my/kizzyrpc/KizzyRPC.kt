@@ -28,9 +28,16 @@ import java.net.URI
 import java.net.URISyntaxException
 import javax.net.ssl.SSLParameters
 
-const val RICH_PRESENCE_OP_CODE = 3
-const val TAG = "KizzyRPC"
+// Constant for Rich Presence operation code
+private const val RICH_PRESENCE_OP_CODE = 3
+// Constant for logging tag
+private const val TAG = "KizzyRPC"
+/**
+ * KizzyRPC is a class that implements Discord Rich Presence functionality using WebSockets.
+ * @param token discord account token
+ */
 class KizzyRPC(var token: String) {
+
     private var rpc: RichPresence? = null
     private var webSocketClient: WebSocketClient? = null
     private var gson: Gson = GsonBuilder().setPrettyPrinting().create()
@@ -41,6 +48,9 @@ class KizzyRPC(var token: String) {
     private var sessionId: String? = null
     private var reconnectSession = false
 
+    /**
+     * Closes the Rich Presence connection.
+     */
     fun closeRPC() {
         if (heartbeatThr != null) {
             if (!heartbeatThr!!.isInterrupted) heartbeatThr!!.interrupt()
@@ -48,10 +58,20 @@ class KizzyRPC(var token: String) {
         if (webSocketClient != null) webSocketClient!!.close(1000)
     }
 
+    /**
+     * Returns whether the Rich Presence connection is running.
+     * @return true if the connection is open, false otherwise.
+     */
     fun isRpcRunning(): Boolean {
         return webSocketClient?.isOpen == true
     }
 
+    /**
+     * Sets the activity for the Rich Presence.
+     * @param activity the activity to set.
+     * @param status the presence status to set.
+     * @param since the activity start time.
+     */
     fun setActivity(
         activity: Activity,
         status: String = "online",
@@ -69,6 +89,9 @@ class KizzyRPC(var token: String) {
         createWebsocketClient()
     }
 
+    /**
+     * Sends the identify payload to the Discord Gateway.
+     */
     fun sendIdentify() {
         Log.d(TAG, "sendIdentify() called")
         webSocketClient!!.send(
@@ -89,6 +112,9 @@ class KizzyRPC(var token: String) {
         )
     }
 
+    /**
+     * Creates the WebSocket client.
+     */
     private fun createWebsocketClient() {
         val uri: URI = try {
             URI("wss://gateway.discord.gg/?encoding=json&v=10")
@@ -98,14 +124,18 @@ class KizzyRPC(var token: String) {
         }
         val headerMap = androidx.collection.ArrayMap<String, String>()
         webSocketClient = Websocket(uri, headerMap)
+        // Connect the websocket client
         (webSocketClient as Websocket).connect()
     }
 
     init {
+        // Initialize the heartbeat runnable
         heartbeatRunnable = Runnable {
             try {
+                // Check if heartbeat interval is less than 10,000 milliseconds
                 if (heartbeatInterval < 10000) throw RuntimeException("invalid")
                 Thread.sleep(heartbeatInterval.toLong())
+                // Send the heartbeat to the websocket
                 webSocketClient.send(
                     HeartBeat(
                         op = 1,
@@ -122,25 +152,23 @@ class KizzyRPC(var token: String) {
 
         override fun send(text: String?) {
             super.send(text)
+            Log.d(TAG, "Sending message: $text")
         }
 
         override fun onOpen(handshakedata: ServerHandshake?) {
-            Log.d(TAG, "Socket Opened with: handshake-data = $handshakedata")
+            Log.d(TAG, "WebSocket opened successfully with handshake data: $handshakedata")
         }
 
         override fun onMessage(message: String) {
+            Log.d(TAG, "Received message: $message")
             val map = gson.fromJson<ArrayMap<String, Any>>(
                 message, object : TypeToken<ArrayMap<String?, Any?>?>() {}.type
             )
-            val o = map["s"]
-            if (o != null) {
-                seq = (o as Double).toInt()
-            }
             when ((map["op"] as Double?)!!.toInt()) {
                 0 -> if (map["t"] as String? == "READY") {
                     sessionId = (map["d"] as Map<*, *>?)!!["session_id"].toString()
                     gatewayResume = (map["d"] as Map<*, *>?)!!["resume_gateway_url"].toString()
-                    Log.d(TAG, "Gateway Url updated to: $gatewayResume")
+                    Log.d(TAG, "Gateway URL updated to: $gatewayResume")
                     Log.i(TAG, "Sending Activity...")
                     rpc?.let { send(it) }
                     return
@@ -148,6 +176,7 @@ class KizzyRPC(var token: String) {
                 10 -> if (!reconnectSession) {
                     val data = map["d"] as Map<*, *>?
                     heartbeatInterval = (data!!["heartbeat_interval"] as Double?)!!.toInt()
+                    Log.d(TAG, "Starting Heartbeat thread with interval: $heartbeatInterval")
                     heartbeatThr = Thread(heartbeatRunnable)
                     heartbeatThr!!.start()
                     sendIdentify()
@@ -155,6 +184,7 @@ class KizzyRPC(var token: String) {
                     Log.d(TAG, "Sending Resume")
                     val data = map["d"] as Map<*, *>?
                     heartbeatInterval = (data!!["heartbeat_interval"] as Double?)!!.toInt()
+                    Log.d(TAG, "Starting Heartbeat thread with interval: $heartbeatInterval")
                     heartbeatThr = Thread(heartbeatRunnable)
                     heartbeatThr!!.start()
                     reconnectSession = false
@@ -171,6 +201,7 @@ class KizzyRPC(var token: String) {
                 }
                 1 -> {
                     if (!Thread.interrupted()) {
+                        Log.d(TAG, "Interrupting Heartbeat thread")
                         heartbeatThr!!.interrupt()
                     }
                     send(
