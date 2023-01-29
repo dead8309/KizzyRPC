@@ -14,7 +14,7 @@ An android library for customising discord rpc used by my [Apps](https://kizzy.v
 
 > Step 1. Add it in your root build.gradle at the end of repositories:
 
-```groovy
+```gradle
 allprojects {
     repositories {
         ...
@@ -25,9 +25,9 @@ allprojects {
 
 > Step 2. Add the dependency
 
-```groovy
+```gradle
 dependencies {
-    implementation 'com.github.dead8309:KizzyRPC:1.0.5'
+    implementation 'com.github.dead8309:KizzyRPC:1.0.71'
 }
 ```
 
