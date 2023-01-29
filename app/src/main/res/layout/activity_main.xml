@@ -8,14 +8,16 @@
         android:id="@+id/token"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="token"
+        android:autofillHints="token"
+        android:hint="@string/token"
+        android:inputType="text"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/start_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="start"
+        android:text="@string/start"
         app:layout_constraintBottom_toTopOf="@+id/stop_btn"
         app:layout_constraintTop_toBottomOf="@+id/token"
         tools:layout_editor_absoluteX="0dp" />
@@ -24,11 +26,8 @@
         android:id="@+id/stop_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="stop"
+        android:text="@string/stop"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/token"
-        />
-
-
+        app:layout_constraintTop_toBottomOf="@+id/token" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
