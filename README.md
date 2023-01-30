@@ -61,5 +61,44 @@ dependencies {
 )
 ```
 
-![RPC _Demo](https://user-images.githubusercontent.com/68665948/172368963-90697dc2-3d7a-42e6-9511-d1497eadb637.png)
+## Rpc Options
+| Property  | Type | Description |
+| ------------- | ------------- | ------------- |
+| `activity`  | [Activity](#activity) | The activity information to be set for the Discord RPC. |
+| `status` | String | The user's status, could be `online`, `idle`, `dnd` |
+| `since` | Long | The Unix time (in milliseconds) when the user started the activity. |
 
+## Activity
+Required fields are marked with *
+| Property  | Type | Description |
+| ------------- | ------------- | ------------- |
+| `applicationId` | String | The application id of your app from discord developer portal. **_NOTE:_** `applicationId` is required if you want to use buttons |
+| `name*` | String | The name of the activity that is being set. |
+| `details` | String | A detailed message about the activity. |
+| `state` | String | A short message about the activity. |
+| `type*` | Int | The type of activity, could be 0 for `playing`, 1 for `streaming`, 2 for `listening`, 3 for `watching`, 5 for `competing`. |
+| `timestamps` | [Timestamps](#timestamps) | The timestamps of the activity, including start and end time. |
+| `assets` | [Assets](#assets) | The assets of the activity, including large image and text, and small image and text. |
+| `buttons` | List<String> | A list of buttons labels. |
+| `metadata` | [Metadata](#metadata) | Additional metadata for the activity. |
+
+## Timestamps
+| Property  | Type | Description |
+| ------------- | ------------- | ------------- |
+| `start`  | Long | The Unix time (in milliseconds) when the activity started. |
+| `end` | Long | The Unix time (in milliseconds) when the activity ends. |
+
+## Assets
+| Property  | Type | Description |
+| ------------- | ------------- | ------------- |
+| `largeImage`  | String | The identifier of the large image asset. See [image-formatting](#image-formatting) |
+| `largeText` | String | The text displayed when hovering over the large image. |
+| `smallImage` | String | The identifier of the small image asset. See [image-formatting](#image-formatting)  |
+| `smallText` | String | The text displayed when hovering over the small image. |
+
+## Metadata
+| Property  | Type | Description |
+| ------------- | ------------- | ------------- |
+| `metadata`  | List<String> | List of button url(s). |
+
+## Image Formatting
