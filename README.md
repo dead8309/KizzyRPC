@@ -91,14 +91,12 @@ Required fields are marked with *
 ## Assets
 | Property  | Type | Description |
 | ------------- | ------------- | ------------- |
-| `largeImage`  | String | The identifier of the large image asset. See [image-formatting](#image-formatting) |
+| `largeImage`  | String | The identifier of the large image asset. See [activity-object-activity-asset-image](https://discord.com/developers/docs/topics/gateway-events#activity-object-activity-asset-image) |
 | `largeText` | String | The text displayed when hovering over the large image. |
-| `smallImage` | String | The identifier of the small image asset. See [image-formatting](#image-formatting)  |
+| `smallImage` | String | The identifier of the small image asset. See [activity-object-activity-asset-image](https://discord.com/developers/docs/topics/gateway-events#activity-object-activity-asset-image)  |
 | `smallText` | String | The text displayed when hovering over the small image. |
 
 ## Metadata
 | Property  | Type | Description |
 | ------------- | ------------- | ------------- |
 | `metadata`  | List<String> | List of button url(s). |
-
-## Image Formatting
