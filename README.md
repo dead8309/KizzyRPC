@@ -6,12 +6,9 @@
 
 # KizzyRPC
 
-An android library for customising discord rpc used by my [Apps](https://kizzy.vercel.app)
+KizzyRPC is an Android library for Discord Rich Presence in Kotlin. With KizzyRPC, you can easily implement Discord Rich Presence into your Android project and make your application more immersive.
 
-![rpc](https://user-images.githubusercontent.com/68665948/183117335-df349a99-e8ae-4329-8234-698c77550e53.png)
-
-# Usage
-
+# Adding the library to your project
 > Step 1. Add it in your root build.gradle at the end of repositories:
 
 ```gradle
@@ -31,8 +28,7 @@ dependencies {
 }
 ```
 
-# Demo
-
+# Usage
 ```kotlin
  val rpc = KizzyRPC("DISCORD ACCOUNT TOKEN")
  rpc.setActivity(
