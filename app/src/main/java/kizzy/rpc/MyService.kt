@@ -7,13 +7,16 @@ import android.app.Service
 import android.content.Intent
 import android.os.IBinder
 import com.my.kizzyrpc.KizzyRPC
-import com.my.kizzyrpc.model.Activity
-import com.my.kizzyrpc.model.Assets
-import com.my.kizzyrpc.model.Metadata
-import com.my.kizzyrpc.model.Timestamps
+import com.my.kizzyrpc.entities.presence.Activity
+import com.my.kizzyrpc.entities.presence.Assets
+import com.my.kizzyrpc.entities.presence.Metadata
+import com.my.kizzyrpc.entities.presence.Timestamps
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
 
 class MyService : Service() {
-
+    val scope = CoroutineScope(SupervisorJob())
     companion object {
         const val CHANNEL = "Discord RPC"
         const val START_ACTIVITY_ACTION = "START_ACTIVITY_ACTION"
@@ -26,35 +29,35 @@ class MyService : Service() {
         token = intent?.getStringExtra("TOKEN")
         rpc = token?.let { KizzyRPC(it) }
         if (intent?.action.equals(START_ACTIVITY_ACTION)) {
-            rpc?.setActivity(
-                activity = Activity(
-                    applicationId = "962990036020756480",
-                    name = "hi",
-                    details = "details",
-                    state = "state",
-                    type = 0,
-                    timestamps = Timestamps(
-                        start = System.currentTimeMillis(),
-                        end = System.currentTimeMillis() + 500000
-                    ),
-                    assets = Assets(
-                        largeImage = "mp:attachments/973256105515974676/983674644823412798/unknown.png",
-                        smallImage = "mp:attachments/973256105515974676/983674644823412798/unknown.png",
-                        largeText = "large-image-text",
-                        smallText = "small-image-text",
-                    ),
-                    buttons = listOf("Button 1", "Button 2"),
-                    metadata = Metadata(
-                        listOf(
-                            "https://youtu.be/1yVm_M1sKBE",
-                            "https://youtu.be/1yVm_M1sKBE",
+            scope.launch {
+                rpc?.setActivity(
+                    activity = Activity(
+                        applicationId = "962990036020756480",
+                        name = "hi",
+                        details = "details",
+                        state = "state",
+                        type = 0,
+                        timestamps = Timestamps(
+                            start = System.currentTimeMillis(),
+                            end = System.currentTimeMillis() + 500000
+                        ),
+                        assets = Assets(
+                            largeImage = "mp:attachments/973256105515974676/983674644823412798/unknown.png",
+                            smallImage = "mp:attachments/973256105515974676/983674644823412798/unknown.png",
+                            largeText = "large-image-text",
+                            smallText = "small-image-text",
+                        ),
+                        buttons = listOf("Button 1", "Button 2"),
+                        metadata = Metadata(
+                            listOf(
+                                "https://youtu.be/1yVm_M1sKBE",
+                                "https://youtu.be/1yVm_M1sKBE",
+                            )
                         )
-                    )
-                ),
-                status = "online",
-                since = System.currentTimeMillis()
-            )
-
+                    ),
+                    status = "online",
+                    since = System.currentTimeMillis())
+            }
         }
         notification()
         return super.onStartCommand(intent, flags, startId)
