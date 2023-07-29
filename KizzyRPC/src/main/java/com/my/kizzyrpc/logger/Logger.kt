@@ -14,14 +14,20 @@
  *   limitations under the License.
  */
 
-package com.my.kizzyrpc.model
+package com.my.kizzyrpc.logger
 
-import com.google.gson.annotations.SerializedName
+interface Logger {
+    fun clear()
+    fun i(tag: String, event: String)
+    fun e(tag: String, event: String)
+    fun d(tag: String, event: String)
+    fun w(tag: String, event: String)
+}
 
-data class RichPresence(
-    @SerializedName("d")
-    var d: RichPresenceData?,
-    @SerializedName("op")
-    val op: Int?
-)
-
+object NoOpLogger: Logger {
+    override fun clear() {}
+    override fun i(tag: String, event: String) {}
+    override fun e(tag: String, event: String) {}
+    override fun d(tag: String, event: String) {}
+    override fun w(tag: String, event: String) {}
+}

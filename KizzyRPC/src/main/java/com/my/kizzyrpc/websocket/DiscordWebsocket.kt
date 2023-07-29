@@ -14,13 +14,14 @@
  *   limitations under the License.
  */
 
-package com.my.kizzyrpc.model
+package com.my.kizzyrpc.websocket
 
-import com.google.gson.annotations.SerializedName
+import com.my.kizzyrpc.entities.presence.Presence
+import kotlinx.coroutines.CoroutineScope
 
-data class Timestamps(
-    @SerializedName("end")
-    val end: Long? = null,
-    @SerializedName("start")
-    val start: Long? = null
-)
+sealed interface DiscordWebSocket: CoroutineScope {
+    suspend fun connect()
+    suspend fun sendActivity(presence: Presence)
+    fun isWebSocketConnected(): Boolean
+    fun close()
+}
